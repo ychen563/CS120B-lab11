@@ -44,4 +44,5 @@ int main(void) {
             default: PORTB = 0x1B; break;
         }
     }
+    return 1;
 }
