@@ -13,8 +13,6 @@
 #endif
 #include "keypad.h"
 
-unsigned char 
-
 int main(void) {
     unsigned char x;
     /* Insert DDR and PORT initializations */
