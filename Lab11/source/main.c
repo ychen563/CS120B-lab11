@@ -66,7 +66,7 @@ int main() {
 
     task1.state = start;
     task1.period = 50;
-    task1.elapsedTime  = task5.period;
+    task1.elapsedTime  = task1.period;
     task1.TickFct = &keypadSMTick;
 
 
