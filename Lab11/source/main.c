@@ -52,13 +52,33 @@ int keypadSMTick(int state) {
     return state;
 }
 
+enum LCD_display_states {LCD_display};
+
+int LCDSMTick(int state){
+	
+    char message[] = "CS120B is Legend... wait for it DARY!";
+
+	switch(state){
+        case LCD_display: state = LCD_display; break;
+        default: state = LCD_display; break;
+	}
+	switch(state){
+		case LCD_display:
+
+	}
+
+	LCD_ClearScreen();
+	LCD_DisplayString(1,message);
+}
+
 int main() {
     /* Insert DDR and PORT initializations */
     DDRC = 0xF0; PORTC = 0x0F;
     DDRB = 0xFF; PORTB = 0x00;
+    DDRD = 0xFF; PORTD = 0x00;
     /* Insert your solution below */
     static task task1;
-    task *tasks[] = { &task1};
+    task *tasks[] = { &task1, &task2};
     const unsigned short numTasks = sizeof(tasks)/sizeof(task*);
 
     const char start = -1;
@@ -67,6 +87,11 @@ int main() {
     task1.period = 50;
     task1.elapsedTime  = task1.period;
     task1.TickFct = &keypadSMTick;
+
+    task2.state = start;
+    task2.period = 50;
+    task2.elapsedTime  = task2.period;
+    task2.TickFct = &LCDSMTick;
 
 
     unsigned short i;
